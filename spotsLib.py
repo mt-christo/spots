@@ -5,13 +5,17 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
 class Spot(object):
-    def __init__(self, patch, figure, letters, colors):
+    def __init__(self, patch, figure):
         self.patch = patch
         self.figure = figure
         self.subplot = figure.add_subplot(111)
-        self.letters = letters
-        self.colors = colors
+        self.letters = []
+        self.colors = []
         self.figure.canvas.mpl_connect('key_press_event', self.press)
+        
+    def add_color(self, letter, color):
+        self.letters.append(letter)
+        self.colors.append(color)
         
     def press(self, event):
         for i, p in enumerate(self.letters):
