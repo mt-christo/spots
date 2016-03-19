@@ -1,7 +1,5 @@
 from spotsLib import *
 
-s = Spot(5,5,2,'red',circa)
+s = Spot(patches.Circle((5,5), radius=1, color='red'), plt.figure(), ['g', 'w'], ['green', 'blue'])
 
-s.behave('k', lambda self: s.recolor('blue') if true else false)
-
-showKirill(s.draw)
+s.draw()
