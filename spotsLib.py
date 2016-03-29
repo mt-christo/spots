@@ -89,12 +89,12 @@ class Spots(object):
         print(len(self.spots))
         for p1 in self.spots:
             for p2 in self.spots:
-                if np.sqrt((p1.x + p1.vx - p2.x - p2.vx)**2 + (p1.y + p1.vy - p2.y - p2.vy)**2) < p1.r + p2.r:
-                    v1 = np.array(p1.vx, p1.vy)
-                    v1tmp = np.array(p1.vx, p1.vy)
-                    v2 = np.array(p2.vx, p2.vy)
+                if np.sqrt((p1.x + p1.vx - p2.x - p2.vx)**2 + (p1.y + p1.vy - p2.y - p2.vy)**2)[0] < p1.r + p2.r:
+                    v1 = np.array([p1.vx, p1.vy])
+                    v1tmp = np.array([p1.vx, p1.vy])
+                    v2 = np.array([p2.vx, p2.vy])
                     
-                    d12 = np.array(p2.x - p1.x, p2.y - p1.y)
+                    d12 = np.array([p2.x - p1.x, p2.y - p1.y])
                     d21 = -d12
 
                     proj12 = d12 * sum(v1*d12) / sum(d12**2)
@@ -107,9 +107,9 @@ class Spots(object):
                     p1.vy = v1[1]
                     p2.vx = v2[0]
                     p2.vy = v2[1]
-            if p1.x + p1.r + p1.vx > self.xyborder[1] or p1.x - p1.r + p1.vx < self.xyborder[0]:
+            if (p1.x + p1.r + p1.vx)[0] > self.xyborder[1] or (p1.x - p1.r + p1.vx)[0] < self.xyborder[0]:
                     p1.vx = -p1.vx
-            if p1.y + p1.r + p1.vy > self.xyborder[1] or p1.y - p1.r + p1.vy < self.xyborder[0]:
+            if (p1.y + p1.r + p1.vy)[0] > self.xyborder[1] or (p1.y - p1.r + p1.vy)[0] < self.xyborder[0]:
                     p1.vy = -p1.vy
             p1.move()
         self.draw()
